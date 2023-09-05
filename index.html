@@ -1,5 +1,52 @@
-<html>
-    <body>
-        <h1>1nterfaze</h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap" rel="stylesheet');
+
+
+        #hidden-content {
+            display: none;
+        }
+
+        #header {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="header">1nterfaze.com is password protected.</h1>
+
+    <form id="password-form">
+        <input type="password" id="password" placeholder="Enter Password" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="hidden-content">
+        <h2>Hello World</h2>
+    </div>
+
+    <script>
+        const passwordForm = document.getElementById('password-form');
+        const passwordInput = document.getElementById('password');
+        const hiddenContent = document.getElementById('hidden-content');
+
+        passwordForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const enteredPassword = passwordInput.value;
+
+            // Replace 'yourPassword' with the actual password you want to use
+            if (enteredPassword === 'qwerty') {
+                hiddenContent.style.display = 'block';
+                passwordForm.style.display = 'none';
+            } else {
+                alert('Incorrect password. Please try again.');
+                passwordInput.value = '';
+            }
+        });
+    </script>
+</body>
 </html>

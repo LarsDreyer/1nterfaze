@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health - Choose Your Path</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+        .big-button {
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .personal {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .professional {
+            background-color: #008CBA;
+            color: white;
+        }
+        .big-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="button-container">
+            <button class="big-button personal" onclick="location.href='/personal_health'">Personal</button>
+            <button class="big-button professional" onclick="location.href='/professional_health'">Professional</button>
+        </div>
+    </div>
+</body>
+</html>

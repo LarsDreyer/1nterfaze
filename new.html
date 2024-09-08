@@ -2,30 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport">
     <title>Establish new 1nterfaze</title>
     <link rel="stylesheet" href="utilities/styles.css">
+    <style>
+        body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    </style>
 </head>
 <body>
     <div id="navbar-placeholder"></div>
-    <main>
-        <section class="options">
-            <h2>Choose an Option</h2>
-            <div class="option">
-                <h3>Suggest</h3>
-                <p>Provide suggestions based on your preferences.</p>
-                <button>Suggest</button>
-            </div>
-            <div class="option">
-                <h3>Create</h3>
-                <p>Create a new option from scratch.</p>
-                <button>Create</button>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 New Options</p>
-    </footer>
+    <div class="new-options">
+        <h2>Missing an interface? Establish a new one!</h2>
+        <div class="option">
+            <h3>Suggest</h3>
+            <p>Provide suggestions based on your preferences.</p>
+            <button>Suggest</button>
+        </div>
+        <div class="option">
+            <h3>Create</h3>
+            <p>Create a new option from scratch.</p>
+            <button>Create</button>
+        </div>
+    </div>
     <script>
         fetch('utilities/navbar.html')
             .then(response => response.text())

@@ -193,3 +193,12 @@ button_u:hover {
     font-size: 15px;
     letter-spacing: 2px;
 }
+
+.new-options h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+}

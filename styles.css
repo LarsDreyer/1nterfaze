@@ -4,7 +4,7 @@
     flex-direction: column;
     height: 100%;
 }
-.top-bar {
+.navbar {
     background-color: #000;
     color: #fff;
     display: flex;
@@ -13,13 +13,13 @@
     padding: 10px 20px;
 }
 
-.top-bar .logo {
+.navbar .logo {
 position: absolute; /* Position logo absolutely */
 left: 20px; /* Adjust as needed */
 font-weight: bolder;
 }
 
-.top-bar .account-button {
+.navbar .account-button {
 position: absolute; /* Position account button absolutely */
 right: 20px; /* Adjust as needed */
 }

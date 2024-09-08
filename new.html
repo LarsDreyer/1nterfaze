@@ -7,14 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="new.html" class="active">New Options</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div id="navbar-placeholder"></div>
     <main>
         <section class="options">
             <h2>Choose an Option</h2>
@@ -33,5 +26,12 @@
     <footer>
         <p>&copy; 2023 New Options</p>
     </footer>
+    <script>
+        fetch('utilities/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
 </body>
 </html>

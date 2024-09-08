@@ -14,14 +14,14 @@
 }
 
 .navbar .logo {
-position: absolute; /* Position logo absolutely */
-left: 20px; /* Adjust as needed */
-font-weight: bolder;
+    position: absolute; /* Position logo absolutely */
+    left: 20px; /* Adjust as needed */
+    font-weight: bolder;
 }
 
 .navbar .account-button {
-position: absolute; /* Position account button absolutely */
-right: 20px; /* Adjust as needed */
+    position: absolute; /* Position account button absolutely */
+    right: 20px; /* Adjust as needed */
 }
 
 .logo {

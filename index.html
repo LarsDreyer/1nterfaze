@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" sizes="64x64" href="https://github.com/LarsDreyer/Website_Tester/raw/main/1nterfazeicon.png">
+    <link rel="stylesheet" href="/Users/larsdreyer/.cursor-tutor/utilities/styles.css">
     <style>
         body, html {
         height: 100%;
@@ -18,49 +19,38 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navbar" style="height: 50px; position: fixed; width: 100%;">
-            <h1 class="logo" style="font-size: 2rem;"><span>1</span>nterfaze</h1>
-
-            <search_bar class="search_bar"">
-                <input type="text" placeholder="Find interface...">
-            </search_bar>
-
-            <button_u class="account-button" style="margin-right: 3%;">
-                <i class="fas fa-user"></i>
-            </button_u>
-        </nav>
-
+        <div id="navbar-placeholder"></div>
         <div class="main-content">
             <div class="hero-section" style="margin-top: -20px;">
                 <h1 class="hero-logo" style="font-size: 10rem; margin-bottom: 10px;"><span>1</span>nterfaze</h1>
-                <p class="hero-text" style="margin-top: -20px;">Revooolutionizing Global Interface</p>
+                <p class="hero-text" style="margin-top: -20px;">Revolutionizing Global Interface</p>
             </div>
             <div class="bottom-section">
-                <a href="https://1nterfaze.com/sports">
+                <a href="https://github.com/LarsDreyer/1nterfaze/blob/main/sports.html">
                     <button class="fancy-button sports-button">
                         <i class="fas fa-futbol"></i>
                         <span>Sports</span>
                     </button>
                 </a>
-                <a href="https://1nterfaze.com/health">
+                <a href="https://github.com/LarsDreyer/1nterfaze/blob/main/health.html">
                     <button class="fancy-button health-button">
                         <i class="fas fa-heart"></i>
                         <span>Health</span>
                     </button>
                 </a>
-                <a href="https://1nterfaze.com/learn">
+                <a href="https://github.com/LarsDreyer/1nterfaze/blob/main/learn.html">
                     <button class="fancy-button learn-button">
                         <i class="fas fa-book"></i>
                         <span>Education</span>
                     </button>
                 </a>
-                <a href="https://1nterfaze.com/files">
+                <a href="https://github.com/LarsDreyer/1nterfaze/blob/main/files.html">
                     <button class="fancy-button files-button">
                         <i class="fas fa-folder-open"></i>
                         <span>Files</span>
                     </button>
                 </a>
-                <a href="https://1nterfaze.com/new">
+                <a href="https://github.com/LarsDreyer/1nterfaze/blob/main/new.html">
                     <button class="fancy-button new-button">
                         <i class="fas fa-plus"></i>
                         <span>New</span>
@@ -101,5 +91,12 @@
             </div>
         </div>
     </div>
+    <script>
+        fetch('utilities/navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
 </body>
 </html>

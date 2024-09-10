@@ -7,26 +7,28 @@
     <link rel="stylesheet" href="utilities/styles.css">
 </head>
 <body>
-    <div id="navbar-placeholder"></div>
-    <div class="new-options">
-        <h2>Missing an interface? Establish a new one!</h2>
-        <div class="option">
-            <h3>Suggest</h3>
-            <p>Provide suggestions based on your preferences.</p>
-            <button>Suggest</button>
+    <div class="container">
+        <div id="navbar-placeholder"></div>
+        <div class="new-options">
+            <h2>Missing an interface? Establish a new one!</h2>
+            <div class="option">
+                <h3>Suggest</h3>
+                <p>Provide suggestions based on your preferences.</p>
+                <button>Suggest</button>
+            </div>
+            <div class="option">
+                <h3>Create</h3>
+                <p>Create a new option from scratch.</p>
+                <button>Create</button>
+            </div>
         </div>
-        <div class="option">
-            <h3>Create</h3>
-            <p>Create a new option from scratch.</p>
-            <button>Create</button>
-        </div>
+        <script>
+            fetch('utilities/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                });
+        </script>
     </div>
-    <script>
-        fetch('utilities/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            });
-    </script>
 </body>
 </html>

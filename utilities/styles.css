@@ -45,6 +45,7 @@ body, html {
     position: absolute; /* Position logo absolutely */
     left: 20px; /* Adjust as needed */
     font-weight: bolder;
+    color: white;
 }
 
 .navbar .account-button {
@@ -57,7 +58,7 @@ body, html {
     font-size: 2em;
     font-weight: 700;
     font-style: italic;
-    color: white;
+    color: inherit;
     cursor: pointer;
     text-decoration: none; /* Added to remove the underline from the link */
 }

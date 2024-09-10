@@ -12,12 +12,11 @@ body, html {
 }
 
 .new-options h2 {
-    display: flex;
     align-items: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     height: 100%;
-    margin-top: 5%;
+    margin-top: 1%;
 }
 
 .new-option-container {

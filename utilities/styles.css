@@ -42,15 +42,15 @@ body, html {
 }
 
 .navbar .logo {
-    position: absolute; /* Position logo absolutely */
-    left: 20px; /* Adjust as needed */
+    position: absolute;
+    left: 20px;
     font-weight: bolder;
     color: white;
 }
 
 .navbar .account-button {
-    position: absolute; /* Position account button absolutely */
-    right: 20px; /* Adjust as needed */
+    position: absolute;
+    right: 20px;
 }
 
 .navbar .logo {
@@ -60,11 +60,13 @@ body, html {
     font-style: italic;
     color: inherit;
     cursor: pointer;
-    text-decoration: none; /* Added to remove the underline from the link */
+    text-decoration: none;
 }
+
 .navbar .logo span {
-    color: #007b7b; /* Petrol color */
+    color: #007b7b;
 }
+
 .account-button {
     background-color: transparent;
     border: none;

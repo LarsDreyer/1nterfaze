@@ -57,8 +57,9 @@ body, html {
     font-size: 2em;
     font-weight: 700;
     font-style: italic;
-    color: #fff;
+    color: white;
     cursor: pointer;
+    text-decoration: none; /* Added to remove the underline from the link */
 }
 .navbar .logo span {
     color: #007b7b; /* Petrol color */

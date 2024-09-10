@@ -52,14 +52,15 @@ body, html {
     right: 20px; /* Adjust as needed */
 }
 
-.logo {
+.navbar .logo {
     font-family: 'Montserrat', sans-serif;
     font-size: 2em;
     font-weight: 700;
     font-style: italic;
     color: #fff;
+    cursor: pointer;
 }
-.logo span {
+.navbar .logo span {
     color: #007b7b; /* Petrol color */
 }
 .account-button {

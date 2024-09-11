@@ -113,7 +113,7 @@ body, html {
     background-color: #f0f0f0;
     padding: 20px 0;
 }
-button {
+.fancy-button {
     width: 194px; /* Set a fixed width for all buttons */
     height: 120px; /* Set a fixed height for all buttons */
     display: inline-flex;
@@ -133,17 +133,17 @@ button {
     font-weight: bold;
 }
 
-button:hover {
+.fancy-button:hover {
     background-color: #009b9b;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 1);
 }
 
-button:active {
+.fancy-button:active {
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-button i {
+.fancy-button i {
     font-size: 35px;
     margin-bottom: 10px;
 }

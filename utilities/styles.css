@@ -53,7 +53,7 @@ body, html {
     right: 20px;
 }
 
-.navbar .logo .button{
+.navbar .logo .navbar-button{
     font-family: 'Montserrat', sans-serif;
     font-size: 2em;
     font-weight: 700;

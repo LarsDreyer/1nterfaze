@@ -61,6 +61,9 @@ body, html {
     color: white;
     cursor: pointer;
     text-decoration: none;
+    background-color: transparent;
+    border: none;
+    height: 50px;
 }
 
 .navbar .logo span {

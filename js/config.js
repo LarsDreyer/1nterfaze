@@ -2,7 +2,7 @@
 const CONFIG={
   navn:'1nterfaze MTB',        // vises i toppmenyen
   tittel:'1nterfaze',          // vises i nettleserfanen
-  repo:'1nterfaze/1nterfaze',  // GitHub-repo som «Publiser» skriver til
+  repo:'LarsDreyer/1nterfaze',  // GitHub-repo som «Publiser» skriver til
   fil:'data/content.js',       // innholdsfilen i repoet
   passord:'password'           // admin-passord (ikke ekte sikkerhet, se README)
 };

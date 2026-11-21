@@ -54,3 +54,17 @@ input:focus,textarea:focus{outline:2px solid var(--cy);border-color:var(--cy)}la
 #toast{position:fixed;left:50%;bottom:96px;z-index:20;transform:translate(-50%,240px);background:var(--cy);color:#031211;padding:12px 18px;border-radius:14px;font-weight:600;max-width:90vw;transition:transform .5s var(--sp)}#toast.on{transform:translate(-50%,0)}
 dialog{background:var(--card);color:var(--tx);border:1px solid var(--ln);border-radius:22px;padding:22px;width:min(380px,90vw)}dialog::backdrop{background:rgba(0,0,0,.55);backdrop-filter:blur(8px)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.logo img{margin-right:8px;height:26px;width:auto}
+.ab{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto}.ab>*{flex:none}.ab>:first-child{margin-left:auto}.ab>:last-child{margin-right:auto}
+.mm{position:absolute;left:0;right:0;top:100%;max-height:calc(100vh - 72px);overflow:auto;background:rgba(15,20,24,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--ln);border-radius:0 0 22px 22px;padding:8px 12px 16px}
+.mm>a,.mm summary,.mtoc summary{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:12px;color:var(--tx);font-weight:600;cursor:pointer;list-style:none}
+.mm summary::-webkit-details-marker,.mtoc summary::-webkit-details-marker{display:none}
+.mm summary::after,.mtoc summary::after{content:"▾";margin-left:auto;color:var(--cy);transition:transform .4s var(--sp)}
+.mm details[open]>summary::after,.mtoc[open]>summary::after{transform:rotate(180deg)}
+.mtoc a,.mm details a{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 12px;border-radius:12px;color:var(--mu);line-height:1.25}
+.mtoc a.d0,.mm a.d0{color:var(--tx);font-weight:700}.mtoc a.d1,.mm a.d1{color:var(--tx);font-weight:600}.mtoc a.d2,.mm a.d2{padding-left:30px;font-size:.95rem}
+.mtoc i,.mm i{font-style:normal;font-size:.78rem;min-width:2.3em;color:var(--mu)}.mtoc a.on,.mm a.on{background:var(--c2);color:var(--cy)}
+.mtoc{display:none;margin-bottom:16px;background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:4px}
+#menu{display:none}
+@media(max-width:860px){nav{display:none}#menu{display:flex}.mtoc{display:block}.side{display:none}}
+@media(min-width:861px){.mm{display:none!important}}

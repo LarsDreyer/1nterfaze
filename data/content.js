@@ -1,7 +1,7 @@
 window.CONTENT={
  "home": {
   "title": "Kompendium for nedoverrettet terrengsykling",
-  "sub": "En ressurs av og for Hafrsfjord Sykkelklubb m/ medlemmer",
+  "sub": "En ressurs av Lars Dreyer for Hafrsfjord Sykkelklubb",
   "img": "img/hero.jpg",
   "b": [
    {
@@ -80,7 +80,7 @@ window.CONTENT={
         {
          "t": "ul",
          "x": [
-          "Riktig styrelengde, noenlunde formel for dette: [høyde i mm]x0.440, avrundet til nærmeste 10mm.",
+          "Riktig styrelengde, noenlunde formel for dette: [høyde i mm] x 0.2 + 410, avrundet til nærmeste 10mm.",
           "Bremsehendler i en vinkel på mellom 25° og 30° målt fra holke.",
           "Korte kranker, helst 160-165mm",
           "Litt høy stack, dette er som alt litt preferansebasert, men høyere stack eller rise på styret kan hjelpe med en mer komfortabel og fleksibel grunnposisjon"
@@ -406,7 +406,7 @@ window.CONTENT={
          "x": [
           [
            "Reach",
-           "Den horisontale avstanden fra senter av kranken til senter av styrerørets topp; den absolutt viktigste indikatoren på sykkelens størrelse. En formel man kan bruke for å finne en indikasjon på riktig reach er: 2 x [rytterhøyde i cm] + 110, svaret blir reach i millimeter, dette kan justeres opp eller ned avhengig av rytterens preferanser og kroppslige dimensjoner."
+           "Den horisontale avstanden fra senter av kranken til senter av styrerørets topp; den absolutt viktigste indikatoren på sykkelens størrelse. En formel man kan bruke for å finne en indikasjon på riktig reach er: 2 x [rytterhøyde i cm] + 120, svaret blir reach i millimeter, dette kan justeres opp eller ned avhengig av rytterens preferanser og kroppslige dimensjoner."
           ],
           [
            "Wheelbase (Akselavstand)",
@@ -480,14 +480,79 @@ window.CONTENT={
      "c": "2.2",
      "title": "Dempere",
      "d": "Denne delen forklarer dempere, funksjoner og justeringsmuligheter, varianter, og litt om oppsett",
-     "b": [],
+     "b": [
+      {
+       "t": "p",
+       "x": "Dempere er det som lar sykkelen følge terrenget i stedet for å la støtene gå rett inn i rytteren. En demper består av to deler som gjør hver sin jobb: fjæren og dempingen. Fjæren (luft eller stålfjær) bærer vekten av rytter og sykkel, og bestemmer hvor mye demperen synker sammen og hvor mye støtte den gir. Dempingen (oljestrømmen inni demperen) bestemmer hvor raskt fjæren får bevege seg, både inn og ut."
+      },
+      {
+       "t": "p",
+       "x": "En terrengsykkel har normalt to dempere: gaffelen foran og bakdemperen (shocken) bak. De justeres på samme måte, og riktig oppsett av begge er avgjørende for grep, kontroll og hastighet. Feil oppsett er en av de vanligste begrensningene for utøvere på alle nivåer, uavhengig av teknikk og fysisk form."
+      },
+      {
+       "t": "p",
+       "x": "Rekkefølgen for oppsett er alltid den samme: først fjæren (trykk eller stålfjær, sag og eventuelt volume spacere), deretter rebound, og til slutt compression. Fjæren påvirker alle de andre innstillingene, så den må være riktig før man begynner å finjustere dempingen."
+      }
+     ],
      "k": [
       {
        "id": "k2-2-1",
        "c": "2.2.1",
        "title": "Luft og springrate",
        "d": "",
-       "b": [],
+       "b": [
+        {
+         "t": "p",
+         "x": "Fjæren i demperen bærer rytteren og sykkelen og gir støtte i alle situasjoner, fra små rulleunder til harde landinger. Det finnes to typer: luftfjær og stålfjær (coil). Felles for begge er at de bestemmer hvor mye demperen synker i vandringen, og hvor mye kraft som kreves for å komprimere den videre."
+        },
+        {
+         "t": "h4",
+         "x": "Luftfjær"
+        },
+        {
+         "t": "p",
+         "x": "Luftfjæren justeres med lufttrykk (psi). Mer trykk gir en stivere fjær som synker mindre, mindre trykk gir en mykere fjær som synker mer. Luft er progressiv av natur: jo dypere demperen komprimeres, jo mer øker trykket i luftkammeret og jo hardere blir det å komprimere videre. Hvor progressiv luftfjæren blir kan styres med volum i luftkammeret, se 2.2.8. Fordelen med luft er at den er lett å justere med en pumpe og lav i vekt."
+        },
+        {
+         "t": "h4",
+         "x": "Stålfjær"
+        },
+        {
+         "t": "p",
+         "x": "Stålfjæren velges etter springrate (lbs/in) og er lineær: kraften som kreves øker jevnt gjennom hele vandringen. Det gir en sensitiv og driftssikker demper, men fjæren må byttes for å endre stivhet. Springrate velges ut fra rytterens vekt, og for bakdemper også ut fra sykkelens utveksling (leverage ratio). Preload brukes bare til å finjustere sag, som regel ikke mer enn en til to omdreininger. Trengs mer, er springraten feil og fjæren bør byttes."
+        },
+        {
+         "t": "h4",
+         "x": "Sag"
+        },
+        {
+         "t": "p",
+         "x": "Sag er hvor mye demperen synker sammen under rytterens egenvekt i statisk posisjon, og er utgangspunktet for alt fjæroppsett. Målet er nok sag til at hjulet holder bakkekontakt og demperen kan følge terrenget ned i hull, men ikke så mye at sykkelen sitter for dypt i vandringen. Sag måles i grunnposisjon (se 1.1.1) med fullt utstyr på: hjelm, sekk og sko."
+        },
+        {
+         "t": "p",
+         "x": "Som tommelfingerregel for enduro er utgangspunktet ca 15–20 % sag foran og ca 25–30 % bak. Dette er et utgangspunkt og ikke et fasitsvar, og må finjusteres etter rytter, sykkelens kinematikk og terreng."
+        },
+        {
+         "t": "h4",
+         "x": "Slik setter du opp fjæren"
+        },
+        {
+         "t": "ol",
+         "x": [
+          "Start med anbefalt trykk eller springrate fra produsenten for din vekt.",
+          "Sett O-ring eller kabelstrips på gaffelrøret og på stempelstangen til bakdemperen (eller bruk sag-indikatoren på demperen).",
+          "Stå i grunnposisjon med fullt utstyr, uten å sprette, og gå forsiktig av sykkelen uten å dytte på demperen. Les av hvor O-ringen står.",
+          "Juster trykket litt av gangen til du treffer ønsket sag.",
+          "Kjør en kjent strekning og sjekk hvor mye av vandringen du bruker på de største landingene. Bruker du hele vandringen med harde bunninger, trenger fjæren mer progressivitet (se 2.2.8). Bruker du aldri nesten hele vandringen, kan trykket være for høyt eller demperen for progressiv.",
+          "Still inn rebound og compression først etter at fjæren er riktig (se 2.2.2–2.2.7)."
+         ]
+        },
+        {
+         "t": "note",
+         "x": "Endres lufttrykket eller springraten, må rebound justeres tilsvarende. Sterkere fjær krever mer rebound damping (se 2.2.2)."
+        }
+       ],
        "k": []
       },
       {
@@ -585,7 +650,92 @@ window.CONTENT={
        "c": "2.2.8",
        "title": "Volume spacere og hydraulic bottom out",
        "d": "",
-       "b": [],
+       "b": [
+        {
+         "t": "p",
+         "x": "Volume spacere og hydraulic bottom out (HBO) handler begge om hvordan demperen oppfører seg mot slutten av vandringen, men de løser problemet på to forskjellige måter. Volume spacere endrer fjæren, mens HBO endrer dempingen."
+        },
+        {
+         "t": "h4",
+         "x": "Volume spacere (tokens)"
+        },
+        {
+         "t": "p",
+         "x": "Volume spacere, ofte kalt tokens, er plastbrikker som settes inn i luftkammeret for å gjøre det mindre. Mindre luftvolum gjør at trykket stiger raskere når demperen komprimeres, og luftfjæren blir dermed mer progressiv (hardere mot slutten av vandringen). De påvirker sag og følsomhet tidlig i vandringen lite, men gir mye mer support mot slutten."
+        },
+        {
+         "t": "p",
+         "x": "Å legge til volume spacere gir mer motstand mot bunning, men kan koste litt tilgjengelig vandring i de største slagene. Å fjerne dem gir en mer lineær demper som utnytter vandringen bedre, men som bunner lettere. Det er den foretrukne måten å få mer support mot store støt på, fremfor å stenge HSC (se 2.2.7)."
+        },
+        {
+         "t": "h4",
+         "x": "Slik justerer du volume spacere"
+        },
+        {
+         "t": "ul",
+         "x": [
+          "Start med antallet produsenten anbefaler, eller få spacere hvis du er usikker.",
+          "Bunner demperen ofte eller hardt på de største landingene og droppene, selv med riktig sag: legg til én spacer om gangen.",
+          "Utnytter du aldri nesten hele vandringen, selv på de største landingene: fjern én spacer, eller sjekk at trykket ikke er for høyt.",
+          "Endre én ting om gangen, og kjør samme strekning før og etter slik at endringen er lett å kjenne.",
+          "Gaffel og bakdemper justeres hver for seg, men sykkelen skal føles balansert foran og bak."
+         ]
+        },
+        {
+         "t": "note",
+         "x": "For mange volume spacere gir en hard og ukomfortabel slutt på vandringen, og man kan miste tilgang til den siste delen av den. Målet er support, ikke stivhet."
+        },
+        {
+         "t": "h4",
+         "x": "Hydraulic bottom out (HBO)"
+        },
+        {
+         "t": "p",
+         "x": "Hydraulic bottom out er en funksjon i demperen som øker oljemotstanden kraftig de siste prosentene av vandringen. Når stempelet nærmer seg enden av slaget, begrenses oljestrømmen, og demperen bremses hydraulisk i stedet for å treffe endestoppen med et hardt slag."
+        },
+        {
+         "t": "p",
+         "x": "I motsetning til volume spacere, som gir mer motstand ut fra hvor dypt demperen står (posisjon), gir HBO mer motstand ut fra hvor fort demperen beveger seg mot slutten av vandringen (hastighet). Det betyr at HBO beskytter mot harde bunninger i landinger og store støt, men ikke gir ekstra support ved langsomme, dype kompresjoner, for eksempel i store doseringer. Den erstatter derfor ikke riktig trykk og volume spacere, men er et supplement."
+        },
+        {
+         "t": "p",
+         "x": "Hos noen dempere er HBO justerbar, hos andre er den fast. Er den for sterk, kan slutten av vandringen føles som en vegg. Er den for svak, kan man kjenne bunning til tross for riktig oppsett ellers i demperen."
+        },
+        {
+         "t": "h4",
+         "x": "Volume spacere mot HBO"
+        },
+        {
+         "t": "rows",
+         "x": [
+          [
+           "",
+           "Volume spacere",
+           "Hydraulic bottom out"
+          ],
+          [
+           "Virker via",
+           "Fjæren (luftvolum)",
+           "Dempingen (olje)"
+          ],
+          [
+           "Avhenger av",
+           "Hvor dypt demperen er komprimert",
+           "Hvor fort demperen beveger seg mot slutten"
+          ],
+          [
+           "Hjelper mot",
+           "Bunning, både ved raske og langsomme kompresjoner",
+           "Harde bunninger i raske slag"
+          ],
+          [
+           "Justeres ved",
+           "Å legge til eller fjerne spacere",
+           "Intern justering, hvis demperen har det"
+          ]
+         ]
+        }
+       ],
        "k": []
       }
      ]
@@ -1258,5 +1408,6 @@ window.CONTENT={
    "b": [],
    "k": []
   }
- ]
+ ],
+ "v": 1795254670245
 };

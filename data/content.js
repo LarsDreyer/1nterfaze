@@ -139,10 +139,6 @@ window.CONTENT={
         {
          "t": "p",
          "x": "Finn en sving på sti, gjerne med et langt beint strekk rett før hvor utøverne kan ha så stor fart de klarer. Gjerne bra hvis det er ujevnt underlag rett før svingen. Målet er å ta mye fart, og deretter la utøverne individuelt finne ut hvor sent det går an å starte å bremse mens man ennå overlever svingen. Målet her skal til å begynne med ikke være utgangsfart ut av svingen, kun at man klarer den uten å falle. En bra plass å trene på dette er ca 50 sekunder inn i Sørmarka Enduro etappe 2, se Strava route: <a href=\"https://www.strava.com/routes/3445901779891607858\" target=\"_blank\" rel=\"noopener\">https://www.strava.com/routes/3445901779891607858</a>"
-        },
-        {
-         "t": "vid",
-         "x": "https://www.youtube.com/watch?v=aFcj7078gtA&t=3s"
         }
        ],
        "k": []
@@ -1413,5 +1409,5 @@ window.CONTENT={
    "k": []
   }
  ],
- "v": 1795301555809
+ "v": 1795301668926
 };

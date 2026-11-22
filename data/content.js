@@ -1419,7 +1419,7 @@ window.CONTENT={
    "b": [
     {
      "t": "p",
-     "x": "Praktiske verktøy for å finne riktig størrelse og oppsett. Flere tjenester kommer."
+     "x": "Praktiske verktøy for å finne riktig størrelse og oppsett."
     },
     {
      "t": "calc",
@@ -1432,5 +1432,5 @@ window.CONTENT={
    ]
   }
  ],
- "v": 1795347823858
+ "v": 1795348596063
 };

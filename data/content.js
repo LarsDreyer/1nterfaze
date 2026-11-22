@@ -1094,7 +1094,7 @@ window.CONTENT={
           ],
           [
            "DUB",
-           "Spindle diameter for kranker, SRAM og andre (28.99mm diameter spindle)"
+           "Spindle diameter for kranker, SRAM og andre (28.99mm diameter spindle). Finnes i forskjellige bredder (DUB, DUB Wide og DUB DH)"
           ],
           [
            "Hollowtech II",
@@ -1143,6 +1143,22 @@ window.CONTENT={
           [
            "Boost / non-boost drev",
            "Boost drev har 3mm offset, non-boost drev har 6mm offset."
+          ],
+          [
+           "Tapered steer tube",
+           "28.6mm / 1 1/8 inch på toppen og 39.8mm nede"
+          ],
+          [
+           "H32 / H28",
+           "Antall eiker som går på en felg eller et nav"
+          ],
+          [
+           "Straightpull",
+           "Eiker som ikke har bøy ved navet, må holdes fast ved stramming."
+          ],
+          [
+           "J-bend",
+           "Klassiske eiker med en 90º bøy ved navet"
           ]
          ]
         }
@@ -1432,5 +1448,5 @@ window.CONTENT={
    ]
   }
  ],
- "v": 1795348596063
+ "v": 1795349361650
 };

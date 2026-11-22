@@ -10,7 +10,7 @@ window.CONTENT={
    },
    {
     "t": "p",
-    "x": "Dette dokumentet er utarbeidet en fagressurs om terrengsykling for Hafrsfjord Sykkelklubb. Dokumentet samler det viktigste av nødvendig kunnskap både for trenere og utøvere. Alt fra teknikk, fysisk trening og sportslig utvikling, til tekniske spesifikasjoner og forklaringer, utstyrsanbefalinger, oppsett av sykkelmateriell og vedlikehold av sykler. Et av hovedformålene med denne ressursen er å etablere en tidløs og uavhengig kunnskapskilde som kan videreføres med klubben. Den dekker og gjelder hovedsakelig for Enduro og Utfor (DH), med mål om å gi trenere og utøvere et helhetlig verktøy for fremming av prestasjoner og forståelse av sporten."
+    "x": "Dette dokumentet er utarbeidet en fagressurs om terrengsykling for Hafrsfjord Sykkelklubb. Dokumentet samler det viktigste av nødvendig kunnskap både for trenere og utøvere. Alt fra teknikk, fysisk trening og sportslig utvikling, til tekniske spesifikasjoner og forklaringer, utstyrsanbefalinger, oppsett av sykkelmateriell og vedlikehold av sykler. Et av hovedformålene med denne ressursen er å etablere en tidløs og uavhengig kunnskapskilde som kan videreføres med klubben og oppdateres ved behov. Den dekker og gjelder hovedsakelig for Enduro og Utfor (DH), med mål om å gi trenere og utøvere et helhetlig verktøy for fremming av prestasjoner og forståelse av sporten."
    }
   ],
   "rider": "img/rytter.jpg"
@@ -1457,5 +1457,5 @@ window.CONTENT={
    ]
   }
  ],
- "v": 1795351549659
+ "v": 1795351629590
 };

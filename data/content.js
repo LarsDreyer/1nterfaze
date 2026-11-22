@@ -12,7 +12,8 @@ window.CONTENT={
     "t": "p",
     "x": "Dette dokumentet er utarbeidet som Hafrsfjord Sykkelklubbs komplette fagressurs for terrengsykling. Dokumentet samler det viktigste av nødvendig kunnskap både for trenere og utøvere. Alt fra teknikk, fysisk trening og sportslig utvikling, til tekniske spesifikasjoner og forklaringer, utstyrsanbefalinger, oppsett av sykkelmateriell og vedlikehold av sykler. Et av hovedformålene med denne ressursen er å etablere en tidløs og uavhengig kunnskapskilde som kan videreføres med klubben. Den dekker og gjelder hovedsakelig for Enduro og Utfor (DH), med mål om å gi trenere og utøvere et helhetlig verktøy for fremming av prestasjoner og forståelse av sporten."
    }
-  ]
+  ],
+  "rider": "img/rytter.jpg"
  },
  "parts": [
   {
@@ -1407,7 +1408,29 @@ window.CONTENT={
    "d": "",
    "b": [],
    "k": []
+  },
+  {
+   "id": "tjenester",
+   "n": "",
+   "title": "Tjenester",
+   "img": "",
+   "d": "",
+   "k": [],
+   "b": [
+    {
+     "t": "p",
+     "x": "Praktiske verktøy for å finne riktig størrelse og oppsett. Flere tjenester kommer."
+    },
+    {
+     "t": "calc",
+     "x": "reach"
+    },
+    {
+     "t": "calc",
+     "x": "bar"
+    }
+   ]
   }
  ],
- "v": 1795301668926
+ "v": 1795347823858
 };

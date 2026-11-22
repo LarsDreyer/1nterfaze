@@ -747,7 +747,16 @@ window.CONTENT={
      "title": "Andre Komponenter",
      "d": "Denne delen inneholder kortfattede forklaringer av andre komponenter på sykkelen hvor det er grunnleggende kunnskap verdt å ha.",
      "b": [],
-     "k": []
+     "k": [
+      {
+       "id": "n1795349455549",
+       "c": "2.3.1",
+       "title": "Dekk og hjul",
+       "d": "",
+       "b": [],
+       "k": []
+      }
+     ]
     },
     {
      "id": "k2-4",
@@ -1448,5 +1457,5 @@ window.CONTENT={
    ]
   }
  ],
- "v": 1795349361650
+ "v": 1795349485449
 };

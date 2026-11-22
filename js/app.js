@@ -1,11 +1,12 @@
 // Kompendium-app: hash-ruter + innebygd editor. Innhold: data/content.js. Utkast lagres i localStorage.
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const REPO=CONFIG.repo,FILE=CONFIG.fil,PASSORD=CONFIG.passord,DK='wb:draft',TK='wb:token',AK='wb:admin';
+const REPO=CONFIG.repo,FILE=CONFIG.fil,PASSORD=CONFIG.passord,DK='wb:draft',BK='wb:base',TK='wb:token',AK='wb:admin';
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ls=(k,v)=>{try{return v===undefined?localStorage.getItem(k):v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch{}};
-let DB;try{DB=JSON.parse(ls(DK))}catch{}
-if(DB&&(DB.v||0)<(window.CONTENT.v||0)){DB=null;ls(DK,null);setTimeout(()=>toast('Nytt innhold er publisert. Gammelt utkast ble forkastet.'),600)}
-DB=DB||structuredClone(window.CONTENT);const same=()=>JSON.stringify(DB)===JSON.stringify(window.CONTENT);
+const jp=k=>{try{return JSON.parse(ls(k))}catch{}};
+let BASE=jp(BK);if(!BASE||(BASE.v||0)<(window.CONTENT.v||0))BASE=structuredClone(window.CONTENT);
+let DB=jp(DK);if(DB&&(DB.v||0)<(BASE.v||0)){DB=null;ls(DK,null);setTimeout(()=>toast('Nytt innhold er publisert. Et gammelt utkast ble forkastet.'),600)}
+DB=DB||structuredClone(BASE);const same=()=>JSON.stringify(DB)===JSON.stringify(BASE);
 let admin=+ls(AK)>Date.now(),IDX={};
 const save=()=>{if(same())return ls(DK,null);try{localStorage.setItem(DK,JSON.stringify(DB))}catch{toast('Utkastet er for stort for nettleseren. Eksporter innholdet.')}};
 const path=(p,v)=>{const k=p.split('.'),l=k.pop();let o=DB;for(const x of k)o=o[x];if(v===undefined)return o[l];o[l]=v};
@@ -19,7 +20,7 @@ const T=(p,h,tag='p',r=1)=>`<${tag}${admin?` contenteditable data-p="${p}"${r?' 
 const X=(p,i)=>admin?`<button class="x" data-a="del" data-p="${p}" data-i="${i}" aria-label="Slett">✕</button>`:'';
 const AD=(p,v,l)=>admin?`<button class="g" data-a="add" data-p="${p}" data-v="${esc(JSON.stringify(v))}">${l}</button>`:'';
 const yt=u=>{const m=String(u).match(/(?:v=|youtu\.be\/|embed\/|shorts\/|live\/)([\w-]{11})|^\s*([\w-]{11})\s*$/);return m?`<iframe class="vid" src="https://www.youtube-nocookie.com/embed/${m[1]||m[2]}" title="Video" allowfullscreen loading="lazy"></iframe>`:''};
-const CALC={bar:['Styrelengde','Høyde (cm)',h=>Math.round((2*h+410)/10)*10+' mm','høyde i mm × 0,2 + 410, avrundet til nærmeste 10 mm'],reach:['Reach','Rytterhøyde (cm)',h=>2*h+120+' mm','høyde (cm) × 2 + 120. Kan justeres opp eller ned etter preferanse og kroppsbygning.']};
+const CALC={bar:['Styrebredde','Høyde (cm)',h=>Math.round((2*h+410)/10)*10+' mm','høyde i mm × 0,2 + 410, avrundet til nærmeste 10 mm'],reach:['Reach','Rytterhøyde (cm)',h=>2*h+120+' mm','høyde (cm) × 2 + 120. Kan justeres opp eller ned etter preferanse og kroppsbygning.']};
 const calc=k=>{const c=CALC[k];return c?`<div class="card calc"><b>${c[0]}-kalkulator</b><label>${c[1]}<input type="number" inputmode="numeric" min="100" max="230" data-k="${k}" placeholder="f.eks. 175"></label><div class="out" id="o-${k}">–</div><small class="mu">${c[3]}</small></div>`:''};
 function terms(b,x){const L=b.x.map((r,i)=>[r,i]).sort((a,z)=>a[0][0].localeCompare(z[0][0],'nb'));let h='',c='',ch='';
  for(const[r,i]of L){const k=(r[0][0]||'#').toUpperCase();if(k!=c){c=k;ch+=`<button class="g chip" data-a="jump" data-l="${k}">${k}</button>`;h+=`<h4 id="L${k}">${k}</h4>`}
@@ -39,8 +40,7 @@ const blocks=(n,p)=>n.b.map((b,i)=>`<div>${admin?`<div class="bc"><span class="b
 const addbar=(p,o)=>admin?`<div class="addbar">${[['h','Overskrift'],['p','Tekst'],['ul','Punktliste'],['ol','Nummerert'],['note','Merknad'],['vid','YouTube-video'],['rows','Tabell']].map(([t,l])=>`<button class="g" data-a="blk" data-t="${t}" data-p="${p}.b">+ ${l}</button>`).join('')}<label class="btn g">+ Bilde<input hidden type="file" accept="image/*" data-a="img" data-p="${p}.b"></label>${o?`<button data-a="page" data-p="${p}.k">+ Underside</button><button class="g" data-a="mvp" data-p="${o.pp}" data-i="${o.si}" data-d="-1">Side ↑</button><button class="g" data-a="mvp" data-p="${o.pp}" data-i="${o.si}" data-d="1">Side ↓</button><button class="g" data-a="pdel" data-p="${o.pp}" data-i="${o.si}">Slett side</button>`:''}</div>`:'';
 // ---- sider ----
 const cards=l=>`<div class="cards">${l.map(c=>`<a class="card" href="#/p/${c.id}"><span class="mu">${esc(c.c||c.n||'')}</span><h3>${esc(c.title)}</h3><p class="mu">${esc(c.d||'')}</p></a>`).join('')}</div>`;
-function home(){const H=DB.home;return`<section class="hero" style="--im:url(${H.img})"><div><h1>${T('home.title',H.title,'span',0)}</h1><p>${T('home.sub',H.sub,'span',0)}</p><a class="btn" href="#/p/${DB.parts[0].id}">Start med Del 1</a></div></section>
- ${blocks(H,'home')}${addbar('home')}<div class="cards">${DB.parts.map(p=>`<a class="card pc" href="#/p/${p.id}" style="--im:url(${p.img})"><span class="badge">${esc(p.n)}</span><h3>${esc(p.title)}</h3><p class="mu">${p.k.map(k=>esc(k.c+' '+k.title)).join(', ')||'Under arbeid'}</p></a>`).join('')}</div>`}
+function home(){const H=DB.home;return`<section class="hero" style="--im:url(${H.img})"><div class="ht"><h1>${T('home.title',H.title,'span',0)}</h1><p>${T('home.sub',H.sub,'span',0)}</p><a class="btn" href="#/p/${DB.parts[0].id}">Start med Del 1</a></div>${H.rider?`<figure class="rider"><img src="${esc(H.rider)}" alt="Rytter i teknisk terreng">${admin?`<label class="btn g">Bytt bilde<input hidden type="file" accept="image/*" data-a="imgr" data-p="home.rider"></label>`:''}</figure>`:''}</section>${blocks(H,'home')}${addbar('home')}<div class="cards">${DB.parts.filter(p=>p.n).map(p=>`<a class="card pc" href="#/p/${p.id}" style="--im:url(${p.img})"><span class="badge">${esc(p.n)}</span><h3>${esc(p.title)}</h3>${p.k.length?`<ul class="sub">${p.k.map(k=>`<li><i>${esc(k.c)}</i>${esc(k.title)}</li>`).join('')}</ul>`:'<p class="mu">Under arbeid</p>'}</a>`).join('')}</div>`}
 const toc=(part,cur)=>{const f=(m,d)=>`<a class="d${d}${m===cur?' on':''}" href="#/p/${m.id}">${m.c?`<i>${m.c}</i>`:''}${esc(m.title)}</a>`+(m.k||[]).map(c=>f(c,d+1)).join('');return f(part,0)};
 function page(id){const e=IDX[id];if(!e)return home();const{n,p,par,part}=e,flat=[];(function w(m){flat.push(m);(m.k||[]).forEach(w)})(part);
  const i=flat.indexOf(n),pv=flat[i-1],nx=flat[i+1],cr=[];for(let m=n;m;m=IDX[m.id].par)cr.unshift(m);
@@ -57,24 +57,32 @@ function results(q){q=q.trim().toLowerCase();if(q.length<2)return'<p class="mu">
  return r||'<p class="mu">Ingen treff.</p>'}
 const search=q=>`<h1>Søk</h1><input id="q" type="search" value="${esc(q)}" placeholder="Søk i kompendiet …" aria-label="Søk"><div id="res" class="cards">${q?results(q):''}</div>`;
 
-function render(){if(location.hash=='#/admin'){history.replaceState(null,'','#/');setTimeout(()=>admin?toast('Du er allerede logget inn'):login())}index();const[,r,a]=location.hash.split('/');let h,pid='';
- if(r=='p'){h=page(a);pid=IDX[a]?.part.id}else if(r=='s')h=search(decodeURIComponent(a||''));else h=home();
- $('#nav').innerHTML=`<a href="#/" class="${!r?'on':''}">Hjem</a>`+DB.parts.map(p=>`<a href="#/p/${p.id}" class="${p.id==pid?'on':''}">${esc(p.title.split(' ')[0])}</a>`).join('');
- const cur=r=='p'?IDX[a]?.n:null;$('#mm').innerHTML='<a href="#/">Hjem</a><a href="#/s/">Søk</a>'+DB.parts.map(p=>`<details${p.id==pid?' open':''}><summary>${esc(p.n+' '+p.title)}</summary>${toc(p,cur)}</details>`).join('');$('#brand').innerHTML=esc(CONFIG.navn).replace(/ (\S+)$/,' <b>$1</b>');
- const dirty=same()?'':'<span class="mu">Utkast</span>';
- $('#app').innerHTML=(admin?'<div class="note">Adminmodus: klikk på en tekst for å redigere. Bruk knappene nederst på siden for å legge til tekst, bilder og YouTube-videoer.</div>':'')+h+(admin?`<div class="ab"><span class="badge">Admin</span>${dirty}<button data-a="pub">Publiser</button><button class="g" data-a="fmt" data-c="bold"><b>B</b></button><button class="g" data-a="fmt" data-c="italic"><i>I</i></button><button class="g" data-a="fmt" data-c="link">Lenke</button><button class="g" data-a="exp">Eksporter</button><label class="btn g">Importer<input hidden type="file" accept=".js,.json" data-a="imp"></label><button class="g" data-a="tok">GitHub-token</button><button class="g" data-a="rst">Forkast utkast</button></div>`:'');
+function render(){if(location.hash=='#/admin'){history.replaceState(null,'','#/');setTimeout(()=>admin?toast('Du er allerede logget inn'):login())}index();const[,r,a]=location.hash.split('/');let h,pid='';if(document.activeElement!==$('#hq'))$('#hq').value=r=='s'?decodeURIComponent(a||''):'';
+ if(r=='p'){h=page(a);pid=IDX[a]?.part.id}else if(r=='s')h=search(decodeURIComponent(a||''));else if(r=='f')h=feedback();else h=home();
+ $('#nav').innerHTML=`<a href="#/" class="${!r?'on':''}">Hjem</a>`+DB.parts.map(p=>`<a href="#/p/${p.id}" class="${p.id==pid?'on':''}">${esc(p.title.split(' ')[0])}</a>`).join('')+`<a href="#/f" class="${r=='f'?'on':''}">Tilbakemelding</a>`;
+ const cur=r=='p'?IDX[a]?.n:null;$('#mm').innerHTML='<a href="#/">Hjem</a><a href="#/s/">Søk</a><a href="#/f">Tilbakemelding</a>'+DB.parts.map(p=>`<details${p.id==pid?' open':''}><summary>${esc([p.n,p.title].filter(Boolean).join(' '))}</summary>${toc(p,cur)}</details>`).join('');$('#brand').innerHTML=esc(CONFIG.navn).replace(/ (\S+)$/,' <b>$1</b>');
+ const dirty=same()?'':'<span class="badge">Upublisert</span>';
+ $('#app').innerHTML=(admin?'<div class="note">Adminmodus: klikk på en tekst for å redigere. Bruk knappene nederst på siden for å legge til tekst, bilder og YouTube-videoer.</div>':'')+h+(admin?`<div class="ab"><span class="badge">Admin</span>${dirty}<button data-a="pub">Publiser</button><button class="g" data-a="fmt" data-c="bold"><b>B</b></button><button class="g" data-a="fmt" data-c="italic"><i>I</i></button><button class="g" data-a="fmt" data-c="link">Lenke</button><button class="g" data-a="exp">Eksporter</button><label class="btn g">Importer<input hidden type="file" accept=".js,.json" data-a="imp"></label><button class="g" data-a="tok">GitHub-token</button><button class="g" data-a="rst">Angre upubliserte</button></div>`:'');
  $('#lock').textContent=admin?'🔓':'🔒';$('#lock').setAttribute('aria-label',admin?'Logg ut':'Admin-innlogging');document.body.classList.toggle('ed',admin);
  document.title=(r=='p'&&IDX[a]?IDX[a].n.title+' – ':'')+CONFIG.tittel}
 addEventListener('hashchange',()=>{render();toggleMenu(false);scrollTo(0,0)});
 function toggleMenu(o){const m=$('#mm');o=o===undefined?m.hidden:o;m.hidden=!o;$('#menu').setAttribute('aria-expanded',o)}
 
+const base=n=>n.n?n.n.replace(/\D/g,''):n.c;
+function renum(){DB.parts.forEach(p=>{if(p.n)(function w(n,b){n.k.forEach((c,i)=>{c.c=b+'.'+(i+1);w(c,c.c)})})(p,base(p))})}
+const FB=()=>(CONFIG.fbUrl||'').replace(/\/$/,'');let FBL=null;
+async function fbLoad(){if(!FB())return;try{const j=await(await fetch(FB()+'/feedback.json')).json();FBL=Object.entries(j||{}).map(([id,m])=>({id,...m})).sort((a,b)=>b.t-a.t)}catch{FBL=[];toast('Kunne ikke hente tilbakemeldinger')}const e=$('#fbl');if(e)e.innerHTML=fbList()}
+const fbList=()=>FBL===null?'<p class="mu">Laster …</p>':FBL.length?FBL.map(m=>`<div class="bub"><b>${esc(m.name||'Anonym')}</b> <small class="mu">${new Date(m.t).toLocaleString('nb-NO',{dateStyle:'medium',timeStyle:'short'})}</small><p>${esc(m.text)}</p>${admin?`<button class="x" data-a="fbdel" data-id="${m.id}" aria-label="Slett melding">✕</button>`:''}</div>`).join(''):'<p class="mu">Ingen tilbakemeldinger ennå. Bli den første!</p>';
+function feedback(){setTimeout(fbLoad);return`<h1>Tilbakemelding</h1><p class="mu">Skriv hva du synes, hva som mangler eller hva som bør forbedres. Alle kan se meldingene.</p>${FB()?`<form id="ff" class="card"><label>Navn (valgfritt)<input id="fn" maxlength="40" autocomplete="off"></label><label>Melding<textarea id="ft" rows="3" maxlength="500" required></textarea></label><input id="fh" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Send</button></form><div id="fbl">${fbList()}</div>`:'<div class="note">Tilbakemeldingsfeeden er ikke koblet til en database ennå. Se README, avsnittet «Tilbakemelding».</div>'}`}
+async function fbToken(){let c;try{c=JSON.parse(sessionStorage.getItem('wb:fbt'))}catch{}if(c&&c.e>Date.now())return c.t;const email=prompt('Firebase-admin (e-post)'),pw=email&&prompt('Passord');if(!pw)return;const j=await(await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+CONFIG.fbKey,{method:'POST',body:JSON.stringify({email,password:pw,returnSecureToken:true})})).json();if(!j.idToken)throw new Error(j.error?.message||'Innlogging feilet');try{sessionStorage.setItem('wb:fbt',JSON.stringify({t:j.idToken,e:Date.now()+3e6}))}catch{}return j.idToken}
+async function fbDel(id){if(!confirm('Slette denne meldingen?'))return;try{const t=await fbToken();if(!t)return;const r=await fetch(`${FB()}/feedback/${id}.json?auth=${t}`,{method:'DELETE'});if(!r.ok)throw new Error('Ikke tillatt');FBL=FBL.filter(m=>m.id!=id);$('#fbl').innerHTML=fbList()}catch(e){toast('Kunne ikke slette: '+e.message)}}
 const shrink=(f,cb)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,1200/im.width),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.82))};im.onerror=()=>toast('Kunne ikke lese bildet');im.src=r.result};r.readAsDataURL(f)};
 // ---- hendelser ----
 async function pub(){const t=ls(TK);if(!t){tok();return}toast('Publiserer …');
  const u=`https://api.github.com/repos/${REPO}/contents/${FILE}`,H={Authorization:'Bearer '+t,Accept:'application/vnd.github+json'};
  DB.v=Date.now();save();try{const g=await fetch(u,{headers:H}),sha=g.ok?(await g.json()).sha:undefined,body='window.CONTENT='+JSON.stringify(DB,null,1)+';\n';
   const r=await fetch(u,{method:'PUT',headers:H,body:JSON.stringify({message:'Oppdater innhold fra editoren',content:btoa(unescape(encodeURIComponent(body))),sha})});
-  if(!r.ok)throw new Error((await r.json()).message);toast('Publisert. Siden oppdateres for alle om ca. 1 minutt.');render()}catch(e){toast('Feilet: '+e.message)}}
+  if(!r.ok)throw new Error((await r.json()).message);BASE=structuredClone(DB);ls(BK,JSON.stringify(BASE));ls(DK,null);toast('Publisert. Siden oppdateres for alle om ca. 1 minutt.');render()}catch(e){toast('Feilet mot '+REPO+': '+e.message)}}
 function tok(){const t=prompt('Lim inn GitHub-token (fine-grained, Contents: Read and write for '+REPO+'). Lagres kun i denne nettleseren.',ls(TK)||'');if(t!==null){ls(TK,t.trim()||null);toast(t.trim()?'Token lagret':'Token fjernet')}}
 document.addEventListener('pointerdown',e=>{const b=e.target.closest('[data-a=fmt]');if(!b)return;e.preventDefault();const c=b.dataset.c;
  if(c=='link'){const g=getSelection(),r=g.rangeCount&&g.getRangeAt(0).cloneRange(),u=prompt('Lenke (https://…)');if(u&&r){g.removeAllRanges();g.addRange(r);document.execCommand('createLink',false,/^https?:\/\//.test(u)?u:'https://'+u)}}else document.execCommand(c)});
@@ -82,17 +90,18 @@ document.addEventListener('keydown',e=>{const t=e.target;if(e.key=='Escape')togg
 document.addEventListener('paste',e=>{if(!e.target.isContentEditable)return;e.preventDefault();document.execCommand('insertText',false,e.clipboardData.getData('text/plain'))});
 document.addEventListener('click',e=>{if(!$('#mm').hidden&&(!e.target.closest('#mm,#menu')||e.target.closest('#mm a')))toggleMenu(false);const b=e.target.closest('[data-a]');if(!b||b.tagName=='INPUT')return;const{a,p,i,v,t,d,l}=b.dataset,go=h=>{location.hash=h};
  if(a=='menu'){toggleMenu();return}
+ if(a=='fbdel'){fbDel(b.dataset.id);return}
  if(a=='jump'){$('#L'+l)?.scrollIntoView({behavior:'smooth'});return}
  if(a=='fmt')return;
  if(a=='pub'){pub();return}if(a=='tok'){tok();return}
  if(a=='exp'){const k=document.createElement('a');k.href=URL.createObjectURL(new Blob(['window.CONTENT='+JSON.stringify(DB,null,1)+';\n'],{type:'text/javascript'}));k.download='content.js';k.click();return}
  if(a=='del'){if(!confirm('Slette dette?'))return;path(p).splice(+i,1)}
  else if(a=='add')path(p).push(JSON.parse(v));
- else if(a=='mv'||a=='mvp'){const A=path(p),j=+i+ +d;if(j<0||j>=A.length)return;[A[+i],A[j]]=[A[j],A[+i]]}
+ else if(a=='mv'||a=='mvp'){const A=path(p),j=+i+ +d;if(j<0||j>=A.length)return;[A[+i],A[j]]=[A[j],A[+i]];if(a=='mvp')renum()}
  else if(a=='blk')path(p).push({t,x:{h:'Ny overskrift',p:'Ny tekst',note:'Merknad',ul:['Punkt'],ol:['Punkt'],vid:'',rows:[['Kolonne 1','Kolonne 2'],['','']]}[t]});
- else if(a=='page'){const n=prompt('Tittel på ny side');if(!n)return;const id='n'+Date.now();path(p).push({id,c:'',title:n,d:'',b:[],k:[]});save();go('#/p/'+id);return}
- else if(a=='pdel'){const n=path(p)[+i];if(!confirm(`Slette «${n.title}» og alle undersider?`))return;const par=IDX[n.id].par;path(p).splice(+i,1);save();go(par?'#/p/'+par.id:'#/');render();return}
- else if(a=='rst'){if(!confirm('Forkaste utkastet og gå tilbake til publisert innhold?'))return;ls(DK,null);DB=structuredClone(window.CONTENT)}
+ else if(a=='page'){const n=prompt('Tittel på ny side');if(!n)return;const id='n'+Date.now();path(p).push({id,c:'',title:n,d:'',b:[],k:[]});renum();save();go('#/p/'+id);return}
+ else if(a=='pdel'){const n=path(p)[+i];if(!confirm(`Slette «${n.title}» og alle undersider?`))return;const par=IDX[n.id].par;path(p).splice(+i,1);renum();save();go(par?'#/p/'+par.id:'#/');render();return}
+ else if(a=='rst'){if(!confirm('Angre alt du har endret siden sist du trykket Publiser? Publiserte endringer påvirkes ikke.'))return;ls(DK,null);DB=structuredClone(BASE)}
  save();render()});
 document.addEventListener('focusout',e=>{const t=e.target,p=t.dataset&&t.dataset.p;if(!p||!t.isContentEditable)return;const v=t.dataset.r?clean(t.innerHTML):t.innerText.trim();if(path(p)!==v){path(p,v);save()}});
 document.addEventListener('input',e=>{const t=e.target;
@@ -108,4 +117,8 @@ function login(){const dl=$('#dlg'),close=()=>dl.close?dl.close():dl.removeAttri
  dl.showModal?dl.showModal():dl.setAttribute('open','');$('#pw').focus();
  $('#lf').onsubmit=e=>{e.preventDefault();if($('#pw').value.trim()===PASSORD){admin=true;ls(AK,Date.now()+8*36e5);close();render();toast('Adminmodus på')}else{$('#le').textContent='Feil passord. Prøv igjen.';$('#le').style.color='var(--or)'}};$('#cx').onclick=close}
 $('#lock').onclick=()=>{if(admin){admin=false;ls(AK,null);render();toast('Logget ut')}else login()};
+$('#hsf').onsubmit=e=>{e.preventDefault();location.hash='#/s/'+encodeURIComponent($('#hq').value.trim());setTimeout(()=>$('#q')?.focus())};
+$('#hq').oninput=e=>{const v=e.target.value;if(v.trim().length>1){history.replaceState(null,'','#/s/'+encodeURIComponent(v));render()}};
+document.addEventListener('submit',async e=>{if(e.target.id!='ff')return;e.preventDefault();if($('#fh').value)return;const text=$('#ft').value.trim(),name=$('#fn').value.trim().slice(0,40);if(!text)return;if(Date.now()-(+ls('wb:ft')||0)<20000){toast('Vent litt før du sender en ny melding');return}
+ try{const r=await fetch(FB()+'/feedback.json',{method:'POST',body:JSON.stringify({name,text:text.slice(0,500),t:Date.now()})});if(!r.ok)throw 0;ls('wb:ft',Date.now());$('#ft').value='';toast('Takk for tilbakemeldingen!');fbLoad()}catch{toast('Kunne ikke sende. Prøv igjen senere.')}});
 render();
